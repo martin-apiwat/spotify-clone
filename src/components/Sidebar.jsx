@@ -19,6 +19,7 @@ export default function Sidebar() {
                 .fill(null)
                 .map(() => (
                     <div
+                        key={i}
                         className="mb-1.5 h-6 animate-pulse rounded-full bg-neutral-800"
                         style={{
                             width: Math.floor(Math.random() * 40 + 40) + "%",
