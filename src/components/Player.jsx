@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { spotifyApi } from "@/pages/_app";
+import PlayerControls from "./PlayerControls";
 
 export default function Player() {
     const [device, setDevice] = useState(null);
@@ -67,5 +68,27 @@ export default function Player() {
         };
     }, [localPlayer]);
 
-    return <div>Player</div>;
+    if (!localPlayer || !track) return <div>no player, please connect</div>;
+
+    return (
+        <div className="flex items-center p-4">
+            <div className="flex items-center">
+                <img
+                    src={track.album.images[0].url}
+                    alt=""
+                    className="mr-4 h-14 w-14 flex-shrink-0"
+                />
+                <div className="">
+                    <h4 className="text-sm">{track.name}</h4>
+                    <p className="text-xs text-text-dimmed">
+                        {track.artists[0].name}
+                    </p>
+                </div>
+            </div>
+            <div className="flex-1 text-center">
+                <PlayerControls player={localPlayer} />
+            </div>
+            <div className="">Volume</div>
+        </div>
+    );
 }
