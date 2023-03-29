@@ -86,7 +86,12 @@ export default function Player() {
                 </div>
             </div>
             <div className="flex-1 text-center">
-                <PlayerControls player={localPlayer} />
+                <PlayerControls
+                    player={localPlayer}
+                    isPaused={isPaused}
+                    position={position}
+                    track={track}
+                />
             </div>
             <div className="">Volume</div>
         </div>
