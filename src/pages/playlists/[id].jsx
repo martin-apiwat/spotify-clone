@@ -17,8 +17,6 @@ export default function Playlist() {
             (await spotifyApi.getPlaylist(router.query.id)).body,
     });
 
-    console.log(playlist);
-
     if (isLoading) return <Layout>loading...</Layout>;
     if (isError) return <Layout>error...</Layout>;
 
@@ -31,7 +29,9 @@ export default function Playlist() {
                     className="h-60 w-60 flex-shrink-0"
                 />
                 <div>
-                    <p className="font-semibold text-text-dimmed">Playlist</p>
+                    <p className="text-sm tracking-widest text-text">
+                        PLAYLIST
+                    </p>
                     <h2 className="text-4xl font-black">{playlist.name}</h2>
                 </div>
             </div>
