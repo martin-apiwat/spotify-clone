@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { spotifyApi } from "../_app";
 import { formatTime } from "@/utils/formatTime";
 import { Clock, PlayCircle } from "react-feather";
+import { accessUrl } from "@/config";
 
 export default function Playlist() {
     const router = useRouter();
@@ -18,7 +19,20 @@ export default function Playlist() {
     });
 
     if (isLoading) return <Layout>loading...</Layout>;
-    if (isError) return <Layout>error...</Layout>;
+    if (isError)
+        return (
+            <Layout>
+                <div className="">
+                    <h3>Please log in again</h3>
+                    <a
+                        href={accessUrl}
+                        className="rounded-xl bg-primary py-1.5 px-5 text-xl"
+                    >
+                        Sign in
+                    </a>
+                </div>
+            </Layout>
+        );
 
     return (
         <Layout>
