@@ -8,11 +8,29 @@ export default function PlayerVolume({ player }) {
     return (
         <div className="flex items-center gap-2">
             {volume > 0.5 ? (
-                <Volume2 />
+                <Volume2
+                    className="opacity-80 hover:opacity-100"
+                    onClick={() => {
+                        spotifyApi.setVolume(0);
+                        setVolume(0);
+                    }}
+                />
             ) : volume > 0 ? (
-                <Volume1 />
+                <Volume1
+                    className="opacity-80 hover:opacity-100"
+                    onClick={() => {
+                        spotifyApi.setVolume(0);
+                        setVolume(0);
+                    }}
+                />
             ) : (
-                <VolumeX />
+                <VolumeX
+                    className="opacity-80 hover:opacity-100"
+                    onClick={() => {
+                        spotifyApi.setVolume(40);
+                        setVolume(0.4);
+                    }}
+                />
             )}
 
             <div className="group relative w-36">

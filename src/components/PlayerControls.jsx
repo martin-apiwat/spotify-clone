@@ -25,30 +25,29 @@ export default function PlayerControls({ player, isPaused, position, track }) {
         <div>
             <div className="flex items-center justify-center gap-4">
                 <SkipBack
-                    className="h-5 w-5 fill-white"
+                    className="h-5 w-5 fill-white opacity-80 hover:opacity-100"
                     onClick={() => {
                         spotifyApi.skipToPrevious();
                     }}
                 />
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-text">
+                <div
+                    className="flex h-8 w-8 items-center justify-center rounded-full bg-text hover:scale-110"
+                    onClick={() => {
+                        if (isPaused) {
+                            spotifyApi.play();
+                        } else {
+                            spotifyApi.pause();
+                        }
+                    }}
+                >
                     {isPaused ? (
-                        <Play
-                            className="ml-1 h-5 w-5 fill-black text-black"
-                            onClick={() => {
-                                spotifyApi.play();
-                            }}
-                        />
+                        <Play className="ml-1 h-5 w-5 fill-black text-black" />
                     ) : (
-                        <Pause
-                            className="h-5 w-5 fill-black text-black"
-                            onClick={() => {
-                                spotifyApi.pause();
-                            }}
-                        />
+                        <Pause className="h-5 w-5 fill-black text-black" />
                     )}
                 </div>
                 <SkipForward
-                    className="h-5 w-5 fill-white"
+                    className="h-5 w-5 fill-white opacity-80 hover:opacity-100"
                     onClick={() => {
                         spotifyApi.skipToNext();
                     }}
