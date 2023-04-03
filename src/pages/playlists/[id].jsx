@@ -6,6 +6,7 @@ import { formatTime } from "@/utils/formatTime";
 import { Clock, PlayCircle } from "react-feather";
 import { accessUrl } from "@/config";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Playlist() {
    const router = useRouter();
@@ -17,6 +18,9 @@ export default function Playlist() {
       queryKey: ["playlists", router.query.id],
       queryFn: async () => (await spotifyApi.getPlaylist(router.query.id)).body,
    });
+
+   const [currentTrack, setCurrentTrack] = useState(null);
+   console.log("the current track is", currentTrack);
 
    if (isError)
       return (
@@ -33,7 +37,7 @@ export default function Playlist() {
       );
 
    return (
-      <Layout>
+      <Layout setCurrentTrack={setCurrentTrack}>
          <div className="flex items-end gap-3 bg-gradient-to-b from-primary/70 to-bg-dimmed p-10">
             {isLoading ? (
                <div className="h-28 w-28 flex-shrink-0 animate-pulse  bg-neutral-600 md:h-60 md:w-60"></div>
@@ -106,8 +110,16 @@ export default function Playlist() {
                           }}
                        >
                           <div className="w-8 text-base">
-                             <p className="group-hover:hidden">{index + 1}</p>
-                             <PlayCircle className="h-5.5 w-5.5 hidden text-text group-hover:block" />
+                             {item.track.id === currentTrack?.id ? (
+                                <div>Hej</div>
+                             ) : (
+                                <>
+                                   <p className="group-hover:hidden">
+                                      {index + 1}
+                                   </p>
+                                   <PlayCircle className="h-5.5 w-5.5 hidden text-text group-hover:block" />
+                                </>
+                             )}
                           </div>
 
                           <div className="flex items-center gap-4 overflow-hidden">

@@ -4,7 +4,7 @@ import PlayerControls from "./PlayerControls";
 import PlayerVolume from "./PlayerVolume";
 import PlayerOverlay from "./PlayerOverlay";
 
-export default function Player() {
+export default function Player({ setCurrentTrack }) {
    const [device, setDevice] = useState(null);
    const [localPlayer, setLocalPlayer] = useState(null);
    const [track, setTrack] = useState(null);
@@ -81,6 +81,12 @@ export default function Player() {
 
       playback();
    }, [device, spotifyApi]);
+
+   useEffect(() => {
+      if (setCurrentTrack) {
+         setCurrentTrack(track);
+      }
+   }, [track]);
 
    if (!isActive || !localPlayer || !track)
       return <div>no player, please connect</div>;
