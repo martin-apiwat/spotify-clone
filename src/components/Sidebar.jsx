@@ -38,7 +38,7 @@ export default function Sidebar() {
             className={
                "block py-1 transition-colors hover:text-text" +
                (router.query.id === playlist.id
-                  ? " border-l-4 border-l-primary text-text"
+                  ? " border-r-2 border-r-primary text-text"
                   : " text-text-dimmed")
             }
             key={playlist.id}

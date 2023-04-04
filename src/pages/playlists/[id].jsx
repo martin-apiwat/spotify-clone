@@ -111,13 +111,15 @@ export default function Playlist() {
                        >
                           <div className="w-8 text-base">
                              {item.track.id === currentTrack?.id ? (
-                                <div>Hej</div>
+                                <div className="">
+                                   <PlayCircle className="text-primary" />
+                                </div>
                              ) : (
                                 <>
                                    <p className="group-hover:hidden">
                                       {index + 1}
                                    </p>
-                                   <PlayCircle className="h-5.5 w-5.5 hidden text-text group-hover:block" />
+                                   <PlayCircle className="h-5.5 w-5.5 hidden cursor-pointer text-text group-hover:block" />
                                 </>
                              )}
                           </div>
