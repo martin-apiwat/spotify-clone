@@ -130,14 +130,23 @@ export default function Playlist() {
                                 alt=""
                                 className="h-12 w-12"
                              />
-                             <div className="overflow-hidden">
-                                <h4 className=" truncate text-text">
+                             {item.track.id === currentTrack?.id ? (
+                                <div className="truncate text-primary">
                                    {item.track.name}
-                                </h4>
-                                <p className="truncate">
-                                   {item.track.artists[0].name}
-                                </p>
-                             </div>
+                                   <p className="truncate text-text-dimmed">
+                                      {item.track.artists[0].name}
+                                   </p>
+                                </div>
+                             ) : (
+                                <div className="overflow-hidden">
+                                   <h4 className=" truncate text-text">
+                                      {item.track.name}
+                                   </h4>
+                                   <p className="truncate">
+                                      {item.track.artists[0].name}
+                                   </p>
+                                </div>
+                             )}
                           </div>
 
                           <div className="truncate max-md:hidden">
